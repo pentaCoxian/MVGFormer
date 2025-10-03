@@ -1,0 +1,63 @@
+[project]
+name = "mvgformer"
+version = "1.0.0"
+description = "Multiple View Geometry Transformers for 3D Human Pose Estimation (CVPR'24)"
+authors = [
+    { name = "Ziwei Liao", email = "liaozw@uwaterloo.ca" },
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10,<3.11"
+keywords = ["3d pose estimation", "multi-view geometry", "transformer", "computer vision"]
+dependencies = [
+    "numpy>=1.23.0,<2.0.0",
+    "tqdm>=4.65.0",
+    "json_tricks>=3.16.0",
+    "prettytable>=3.6.0",
+    "scipy>=1.10.0",
+    "matplotlib>=3.7.0",
+    "easydict>=1.10",
+    "pyyaml>=6.0",
+    "tensorboardx>=2.6",
+    "smplx>=0.1.28",
+    "h5py>=3.8.0",
+    "chumpy>=0.70",
+    "wandb>=0.15.0",
+    "torch==2.8.0",
+    "torchvision==0.23.0",
+    "opencv-python>=4.7.0",
+    "pillow>=9.5.0",
+]
+
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = [
+    "setuptools>=68.0",
+    "wheel",
+]
+
+[tool.setuptools.packages.find]
+where = ["lib"]
+include = ["*"]
+
+[tool.uv.sources]
+torch = [
+    { index = "torch-cu118" },
+]
+torchvision = [
+    { index = "torch-cu118" },
+]
+
+[[tool.uv.index]]
+name = "torch-cu118"
+url = "https://download.pytorch.org/whl/cu118"
+explicit = true
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.3.0",
+    "black>=23.3.0",
+    "isort>=5.12.0",
+]
+# mmcv-full needs to be installed separately via: mim install mmcv-full
+# Compile deformable attention ops separately via: cd lib/models/ops && python setup.py build install

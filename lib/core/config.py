@@ -247,6 +247,16 @@ config.DECODER.loss_pose_normalize = False
 config.DECODER.loss_joint_type = 'l1'
 config.DECODER.pred_class_fuse = 'mean'
 config.DECODER.pred_conf_threshold = 0.5
+
+# YOLO backbone configuration
+config.YOLO = edict()
+config.YOLO.ENABLED = False
+config.YOLO.MODEL_VARIANT = 'v9-c'  # Options: v9-n, v9-t, v9-s, v9-c, v9-e, v9-m
+config.YOLO.PRETRAINED_WEIGHTS = ''
+config.YOLO.FREEZE_BACKBONE = True
+config.YOLO.FEATURE_LEVELS = [0, 1, 2]
+config.YOLO.USE_DETECTION_GUIDANCE = True
+config.YOLO.NUM_WHOLEBODY_CLASSES = 34
 config.DECODER.match_coord_est = 'abs'
 config.DECODER.match_coord_gt = 'norm'
 config.DECODER.detach_refpoints_cameraprj_firstlayer = True
